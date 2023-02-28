@@ -19,10 +19,16 @@ docker build -f Dockerfile . -t deepxde
 ```
 
 ## Starting the Docker container
-The following command will start a DeepXDE Docker container mapping your current working directory to the container. It is useful to CD into a directory where you want to have Jypiter notebooks and data files for DeepXDE first
+The following command will start a DeepXDE Docker container mapping your current working directory to the container. It is useful to CD into a directory where you want to have Jupyter notebooks and data files for DeepXDE first
 
+For Mac and Linux:
 ```
 docker run --rm -v $(pwd):/root/shared -w "/root/shared" -p 8888:8888 deepxde
+```
+
+For Windows (from a PowerShell):
+```
+docker run --mount type=bind,src="${PWD}",target=/root/shared -w "/root/shared" -p 8888:8888 --rm --name mycontainer deepxde
 ```
 
 Once it starts, open a web browser and go to the URL starting with `http://127.0.0.1:8888` shown in the instructions shown after starting the Docker container.
